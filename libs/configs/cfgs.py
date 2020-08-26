@@ -3,7 +3,7 @@ from __future__ import division, print_function, absolute_import
 import os
 
 # root path
-ROOT_PATH = os.path.abspath(r'C:\Users\yangxue\Documents\GitHub\FPN_Tensorflow')
+ROOT_PATH = os.path.abspath(r'D:\DL\workSpace\pycharm\FPN_Tensorflow')
 
 # pretrain weights path
 TEST_SAVE_PATH = ROOT_PATH + '/tools/test_result'
@@ -21,7 +21,7 @@ ANCHOR_RATIOS = [1, 0.5, 2, 1 / 3., 3., 1.5, 1 / 1.5]
 SCALE_FACTORS = [10., 10., 5., 5.]
 OUTPUT_STRIDE = 16
 SHORT_SIDE_LEN = 600
-DATASET_NAME = 'airplane'
+DATASET_NAME = 'pascal'
 
 BATCH_SIZE = 1
 WEIGHT_DECAY = {'resnet_v1_50': 0.0001, 'resnet_v1_101': 0.0001}

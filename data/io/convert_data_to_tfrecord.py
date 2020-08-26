@@ -10,13 +10,13 @@ import cv2
 from help_utils.tools import *
 from libs.label_name_dict.label_dict import *
 
-tf.app.flags.DEFINE_string('VOC_dir', None, 'Voc dir')
+tf.app.flags.DEFINE_string('VOC_dir', 'D:\DL\workSpace\pycharm\FPN_Tensorflow\data\VOCdevkit\VOCdevkit_train\\VOC2012\\', 'Voc dir')
 tf.app.flags.DEFINE_string('xml_dir', 'Annotations', 'xml dir')
 tf.app.flags.DEFINE_string('image_dir', 'JPEGImages', 'image dir')
 tf.app.flags.DEFINE_string('save_name', 'train', 'save name')
-tf.app.flags.DEFINE_string('save_dir', cfgs.ROOT_PATH + '/data/tfrecords/', 'save name')
+tf.app.flags.DEFINE_string('save_dir', cfgs.ROOT_PATH + '\data\\tfrecords\\', 'save name')
 tf.app.flags.DEFINE_string('img_format', '.jpg', 'format of image')
-tf.app.flags.DEFINE_string('dataset', 'car', 'dataset')
+tf.app.flags.DEFINE_string('dataset', 'pascal', 'dataset')
 FLAGS = tf.app.flags.FLAGS
 
 
@@ -61,7 +61,7 @@ def read_xml_gtbox_and_label(xml_path):
                 if child_item.tag == 'bndbox':
                     tmp_box = []
                     for node in child_item:
-                        tmp_box.append(int(node.text))  # [x1, y1. x2, y2]
+                        tmp_box.append(float(node.text))  # [x1, y1. x2, y2]
                     assert label is not None, 'label is none, error'
                     tmp_box.append(label)  # [x1, y1. x2, y2, label]
                     box_list.append(tmp_box)
@@ -85,7 +85,7 @@ def convert_pascal_to_tfrecord():
 
     # writer_options = tf.python_io.TFRecordOptions(tf.python_io.TFRecordCompressionType.ZLIB)
     # writer = tf.python_io.TFRecordWriter(path=save_path, options=writer_options)
-    writer = tf.python_io.TFRecordWriter(path=save_path)
+    writer = tf.io.TFRecordWriter(path=save_path)
 
     for count, xml in enumerate(glob.glob(xml_path + '/*.xml')):
         # to avoid path error in different development platform
@@ -93,6 +93,7 @@ def convert_pascal_to_tfrecord():
 
         img_name = xml.split('/')[-1].split('.')[0] + FLAGS.img_format
         img_path = image_path + '/' + img_name
+        img_name = img_name.encode()
 
         if not os.path.exists(img_path):
             print('{} is not exist!'.format(img_path))
