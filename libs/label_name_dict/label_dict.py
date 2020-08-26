@@ -3,7 +3,13 @@ from __future__ import division, print_function, absolute_import
 
 from libs.configs import cfgs
 
-if cfgs.DATASET_NAME == 'ship':
+
+if cfgs.DATASET_NAME == 'car':
+    NAME_LABEL_MAP = {
+        'back_ground': 0,
+        "car": 1
+    }
+elif cfgs.DATASET_NAME == 'ship':
     NAME_LABEL_MAP = {
         'back_ground': 0,
         "ship": 1

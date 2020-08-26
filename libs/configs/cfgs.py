@@ -15,8 +15,10 @@ VERSION = 'v2_airplane'
 CLASS_NUM = 1
 BASE_ANCHOR_SIZE_LIST = [15, 25, 40, 60, 80]
 LEVEL = ['P2', 'P3', 'P4', 'P5', "P6"]
+# 在每个特征层上的anchor的步长（对应于原图）
 STRIDE = [4, 8, 16, 32, 64]
 ANCHOR_SCALES = [1.]
+# anchor_ratios 决定 anchor 的形状
 ANCHOR_RATIOS = [1, 0.5, 2, 1 / 3., 3., 1.5, 1 / 1.5]
 SCALE_FACTORS = [10., 10., 5., 5.]
 OUTPUT_STRIDE = 16

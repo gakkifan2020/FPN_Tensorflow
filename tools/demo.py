@@ -250,10 +250,10 @@ def parse_args():
     parser = argparse.ArgumentParser(description='Train a Fast R-CNN network')
     parser.add_argument('--src_folder', dest='src_folder',
                         help='images path',
-                        default=None, type=str)
+                        default='.\demo_src', type=str)
     parser.add_argument('--des_folder', dest='des_folder',
                         help='output path',
-                        default=None, type=str)
+                        default='.\demo_des', type=str)
     parser.add_argument('--det_th', dest='det_th',
                         help='detection threshold',
                         default=0.7,
